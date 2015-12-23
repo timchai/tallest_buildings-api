@@ -11,11 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151213191916) do
+ActiveRecord::Schema.define(version: 20151223043452) do
 
   create_table "buildings", force: :cascade do |t|
     t.string   "location",   limit: 255
     t.string   "height",     limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",      limit: 255
+    t.string   "api_key",    limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
