@@ -22,4 +22,5 @@ class Api::V1::BuildingsController < ApplicationController
     @building = Building.find(params[:id]).destroy
       format.json {render json: "Building gone"}
   end
+
 end

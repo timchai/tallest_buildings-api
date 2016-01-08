@@ -1,5 +1,18 @@
 class BuildingsController < ApplicationController
 
+  def index
+    @building = Building.all
+  end
+
+  def create
+    @building = Building.new(location: params[:location], height: params[:height])
+    if @building.save
+      render json: @building
+    else
+      render json: {errors: @building.errors.full_messages}, status: 422
+    end
+  end
+  
 =begin  def show
     @building = Building.find(params[:id])
     render json: @building

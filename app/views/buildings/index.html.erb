@@ -1,0 +1,47 @@
+<div ng-app="app">
+  <div ng-controller="buildingsCtrl" ng-init="setup()">
+  <div>
+    Add Building:
+    <ul>
+      <li class="error-messages" ng-repeat="errorMessage in errorMessages">{{errorMessage}}</li>
+    </ul>  
+    <div>
+      Location: <input ng-model="newLocation">
+    </div>
+    <div>
+      Height: <textarea ng-model="newHeight"></textarea>
+    </div><br>
+    <button ng-click="addBuilding(newLocation, newHeight)">Add Building</button><br>
+
+  <datalist id="location">
+    <option ng-repeat="building in buildings">{{building.location}}</option>
+  </datalist>
+
+    <div>
+      Total Number of Buildings: {{buildings.length}}
+    </div>
+    <input ng-model="locationFilter" list="location">
+    <button ng-click="toggleOrder('location')">Sort by location</button>
+    <button ng-click="toggleOrder('height')">Sort by height</button>
+
+      <!-- <div ng-repeat="building in buildings | filter: {location: locationFilter} | orderBy:orderAttribute">
+        <p ng-click="toggleVisibility(building)"> {{building.location}} </p>
+        <a href="#" ng-click="deleteBuilding(building)">Delete</a>
+      </div> -->
+
+    <table>
+      <tr>
+        <th ng-click="toggleOrder('location')">Location</th>
+        <th ng-click="toggleOrder('height')">Height</th>
+        <th>Delete</th>
+      </tr>
+      <tr ng-repeat="building in buildings | filter: {location: locationFilter} | orderBy:orderAttribute"  >
+        <td>{{building.location}}</td>
+        <td>{{building.height}}</td>
+        <td><a href="#" ng-click="deleteBuilding(building)">Delete</a></td>
+      </tr>
+    </table>
+    
+        
+  </div>
+</div>
